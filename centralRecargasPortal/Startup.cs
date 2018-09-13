@@ -45,8 +45,8 @@ namespace centralRecargasPortal
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRecaptcha(new RecaptchaOptions
             {
-                SiteKey = "6Lc6i2cUAAAAAJXFxgnhtmuSAzXFKQdTRZSom06u",
-                SecretKey = "6Lc6i2cUAAAAANcN0ZGoov1Fuki5Zyh5b0YCLzyE"
+                SiteKey = "6LdALnAUAAAAACboCuzoUlXN43n5bR3JY8gohF6k",
+                SecretKey = "6LdALnAUAAAAAAkH7RvBPgHy7bgPtJ6W6KN9BSjF"
             });
             services.AddSingleton<IEmailSender, EmailSender>();
             
