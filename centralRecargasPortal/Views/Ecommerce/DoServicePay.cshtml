@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEcomm.cshtml";
+}
+@{
+    ViewData["Title"] = "Pago de servicios";
+}
+@model PayServicesModel.ToPay
+<h2>@ViewData["Title"]</h2> 
+<div class=" row">
+    <div class="col-md-6">
+        <div class=" panel">
+            <div class="panel-heading"><span class="fas fa-mobile-alt"></span>&nbsp;<label id="headPanel">@ViewBag.headPanel</label></div>
+            <div class="panel-body">
+                <form asp-action="DoServicePay" asp-controller="Ecommerce" method="post" id="hacerRecarga">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class=" form-group" id="logoCarrier">
+                        <img src="~/images/Portal/@ViewBag.carrierimg" class="img-thumbnail" />
+                    </div>
+                    <input type="hidden" asp-for="Carrier" value="@ViewBag.CarrierQ" />
+                    <span asp-validation-for="errorMessage" class="text-danger"></span>
+                    <div class="form-group-lg">
+                        <label asp-for="referencia"></label>
+                        <input asp-for="referencia" class="form-control" style="font-size:xx-large;" />
+                        <span asp-validation-for="referencia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-lg">
+                        <label asp-for="confirmacion"></label>
+                        <input asp-for="confirmacion" class="form-control" style="font-size:xx-large;" />
+                        <span asp-validation-for="confirmacion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-lg">
+                        <label asp-for="monto"></label>
+                        <input asp-for="monto" class="form-control" style="font-size:xx-large;" />
+                        <span asp-validation-for="monto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button id="btnconfirm" class="btn btn-success">Enviar pago</button>
+                    </div>
+                    <div class="form-group">
+                        <p class="text-center">Al hacer click en Enviar pago, recuerde que no hay devoluciones ni cancelaciones.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button class="btn btn-block" asp-action="Recargas" asp-controller="Ecommerce"><span class="fas fa-undo-alt">&nbsp;&nbsp;Cancelar</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="confirmDialog" title="¿Los datos son correctos?" style="background-color:black; border-color:black; font-size:x-large; color:white;" hidden>
+    <p class="text-warning">Está seguro de enviar la recarga. recuerde que no hay devoluciones ni cancelaciones. </p>
+</div>
+

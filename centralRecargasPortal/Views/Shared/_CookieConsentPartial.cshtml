@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (showBanner)
+{
+    <nav id="cookieConsent" class="navbar navbar-default navbar-fixed-top" role="alert">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cookieConsent .navbar-collapse">
+                    <span class="sr-only">Toggle cookie consent banner</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></span>
+            </div>
+            <div class="collapse navbar-collapse">
+                <p class="navbar-text">
+                    Usamos cookies propias y de terceros con la finalidad de mejorar nuestros servicios mediante el análisis de sus hábitos de navegación y 
+elaborar estadísticas de uso. Si continúas navegando, consideramos que aceptas su uso. Para más información por favor 
+consulta nuestro Aviso de Privacidad
+                </p>
+                <div class="navbar-right">
+                    <a asp-controller="Home" asp-action="Privacy" class="btn btn-info navbar-btn">Aviso de Privacidad</a>
+                    <button type="button" class="btn btn-default navbar-btn" data-cookie-string="@cookieString">Acepto</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script>
+        (function () {
+            document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
+                document.cookie = el.target.dataset.cookieString;
+                document.querySelector("#cookieConsent").classList.add("hidden");
+            }, false);
+        })();
+    </script>
+}

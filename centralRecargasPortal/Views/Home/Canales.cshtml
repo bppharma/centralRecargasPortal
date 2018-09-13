@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Canales de Venta";
+}
+<div class="row">
+    <div class="col-md-8">
+        <h2>@ViewData["Title"]</h2>
+        <p class="text-justify">Al registrarte totalmente gratis en nuestro sitio, tendrás acceso a las siguientes plataformas de venta.</p>
+        <div class=" row">
+            <div class="col-md-6">
+                <span class="fas fa-laptop fa-5x text-center"></span>
+                <p class="text-justify">Vende recargas y cobra servicios desde cualquier computadora, móvil, tableta y desde cualquier navegador web.</p>
+            </div>
+            <div class="col-md-6">
+                <i class="fas fa-tablet-alt fa-5x"></i>
+                <p class="text-justify">Vende recargas y cobra servicios desde cualquier móvil vía SMS, Facebook Messenger, Telegram y Whatsapp.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <i class="fas fa-mobile-alt fa-5x"></i>
+                <p class="text-justify">Vende recargas y cobra servicios desde tu celular con las aplicaciones para Android y iOS.</p>
+            </div>
+            <div class="col-md-6">
+                <i class="fas fa-plug fa-5x"></i>
+                <p class="text-justify">Integra tu punto de venta, cadena comercial o aplicación vía web services</p>
+            </div>
+        </div>
+        <p class="text-justify">Si quieres conocer más sobre las herramientas de venta que te ofrecemos, da clic <a asp-controller="Home" asp-action="Canales">aquí</a>  o bien, <a class="btn btn-info" asp-area="Identity" asp-page="/Account/Register">¡Comienza ya!</a></p></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Notificaciones</h2>
+        <i class="fas fa-comments fa-5x"></i>
+        <p class="text-justify">Somos una empresa verde, buscamos también que todas las notificaciones puedan ser enviadas a tus clientes de manera electrónica para que juntos apoyemos un poco al medio ambiente.</p>
+        <h2>Reporte de compra</h2>
+        <i class="fas fa-comments fa-5x"></i>
+        <p class="text-justify">A través de todas las plataformas disponibles, puedes reportar tu compra. A su vez, también los recibimos en nuestros bots de Telegram, Messenger, SMS o por las aplicaciones. </p>
+    </div>
+</div>

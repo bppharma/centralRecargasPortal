@@ -1,0 +1,180 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEcomm.cshtml";
+}
+@{
+    ViewData["Title"] = "Recargas Electrónicas";
+}
+@model RecargasViewModel.Recargar
+<h2>@ViewData["Title"]</h2>
+<script type="text/javascript">
+    function doRecarga(Carrier) {
+        var input = document.createElement('input');
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "carrier");
+        input.setAttribute("value", Carrier);
+        document.getElementById("NewRecarga").appendChild(input);
+        document.getElementById("NewRecarga").submit();
+    }
+</script>
+<h4 class="text-center">Recuerda ofrecer los paquetes y promociones que dan las compañías de telefonía celular para generar mas ventas.</h4>
+<ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#recargas">Recargas</a></li>
+    <li><a data-toggle="tab" href="#paquetes">Paquetes</a></li>
+</ul>
+<form id="NewRecarga" method="post" asp-action="DoRecarga" asp-controller="Ecommerce">
+    <input type="hidden" value="y" name="Viene" id="Viene" />
+    <div class="tab-content">
+        <div id="recargas" class="tab-pane fade in active">
+            <h5 id="nota1">Seleccione el carrier para realizar la recarga.</h5>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(1);">
+                                <img src="~/images/Portal/logo_telcel.png" class="img-thumbnail" />
+                            </a>
+                            Telcel
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(2);">
+                                <img src="~/images/Portal/logo_movistar.png" class="img-thumbnail" />
+                            </a>
+                            Movistar
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(3);">
+                                <img src="~/images/Portal/logo_att.png" class="img-thumbnail" />
+                            </a>
+                            AT&amp;T
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(4);">
+                                <img src="~/images/Portal/logo_iusacell.png" class="img-thumbnail" />
+                            </a>
+                            Iusacell
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(5);">
+                                <img src="~/images/Portal/logo_virgin.png" class="img-thumbnail" />
+                            </a>
+                            Virgin Mobile
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(6);">
+                                <img src="~/images/Portal/logo_unefon.png" class="img-thumbnail" />
+                            </a>
+                            Unefon
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(7);">
+                                <img src="~/images/Portal/nextelAttnice.png" class="img-thumbnail" />
+                            </a>
+                            Nextel - AT&amp;T
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(8);">
+                                <img src="~/images/Portal/logo_alo.png" class="img-thumbnail" />
+                            </a>
+                            Aló
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(9);">
+                                <img src="~/images/Portal/logo_cierto.png" class="img-thumbnail" />
+                            </a>
+                            Cierto
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(10);">
+                                <img src="~/images/Portal/logo_maztiempo.png" class="img-thumbnail" />
+                            </a>
+                            Maz Tiempo
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(11);">
+                                <img src="~/images/Portal/logo_weex.png" class="img-thumbnail" />
+                            </a>
+                            WEEX
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(12);">
+                                <img src="~/images/Portal/logo_flashmobile.png" class="img-thumbnail" />
+                            </a>
+                            Flash Mobile
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(13);">
+                                <img src="~/images/Portal/logo_tuenti.png" class="img-thumbnail" />
+                            </a>
+                            Tuenti
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+
+            </div>
+        </div>
+        <div id="paquetes" class="tab-pane fade">
+            <h5>Selecciona el Carrier del paquete a vender.</h5>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(14);">
+                                <img src="~/images/Portal/internet-telcelNice.png" class="img-thumbnail" />
+                            </a>
+                            Paquete internet Telcel
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(15);">
+                                <img src="~/images/Portal/amigo-sin-limiteNice.png" class="img-thumbnail" />
+                            </a>
+                            Paquete Amigo Sin Límite
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(16);">
+                                <img src="~/images/Portal/movistar-datos.png" class="img-thumbnail" />
+                            </a>
+                            Movistar Datos
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+
+            </div>
+        </div>
+    </div>
+</form>

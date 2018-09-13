@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEcomm.cshtml";
+}
+@model RecargasViewModel.ResultRE
+<script>
+    $(document).ready(function () {
+        $('#formSMS').hide();
+        $('#formMail').hide();
+
+        $('#SMSButton').click(function () {            
+            $('#formSMS').show();
+            $('#formMail').hide();
+        });
+        $("#MailButton").click(function () {
+            $('#formSMS').hide();
+            $('#formMail').show();
+        });
+    });
+   
+    $("#btnconfirm1").click(function () {
+        $("sms").submit();
+    });
+    $("#btnconfirm2").click(function () {
+        $("mail").submit();
+    });
+</script>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                Ticket
+            </div>
+            <div class="panel-body">
+                @if (ViewBag.error)
+                {
+                    <p class="text-capitalize">@Model.Error</p>
+                }
+                else
+                {
+                    <p class="text-capitalize">@Model.Companyname</p>
+                    <p class="text-capitalize">@Model.ticket</p>
+                    <p class="text-capitalize">@Model.Mensaje</p>
+                    <table border="0">
+                        <tr>
+                            <td><button id="SMSButton" class="btn btn-success">Enviar ticket por SMS</button></td>
+                            <td><button id="MailButton" class="btn btn-success">Enviar ticket por Correo</button></td>
+                        </tr>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+    @if (!ViewBag.error)
+    {
+        <div class="col-md-6" id="formSMS">
+            <form method="post" asp-action="SendNotification" asp-controller="Ecommerce" id="sms">
+                <input type="hidden" id="transID" value="@ViewBag.transID" />
+                <div class="form-group-lg">
+                    <label>Número</label>
+                    <input id="PhoneNumber" class="form-control" style="font-size:xx-large;" maxlength="10" />
+                </div>
+                <div class="form-group">
+                    <button id="btnconfirm1" class="btn btn-success">Enviar ticket</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6" id="formMail">
+            <form method="post" asp-action="SendNotification" asp-controller="Ecommerce" id="mail">
+                <div class="form-group-lg">
+                    <label>Correo Electrónico</label>
+                    <input id="EmailSend" class="form-control" style="font-size:xx-large;" maxlength="10" />
+                </div>
+                <div class="form-group">
+                    <button id="btnconfirm2" class="btn btn-success">Enviar ticket</button>
+                </div>
+            </form>
+        </div>
+    }
+</div>

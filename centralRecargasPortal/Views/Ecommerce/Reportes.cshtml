@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEcomm.cshtml";
+}
+@{
+    ViewData["Title"] = "Reportes";
+}
+@model ReportesModel.ReportesViewModel
+<h2>@ViewData["Title"]</h2>
+<p class="text-justify">Se muestran las operaciones del día al cargar esta sección. En los campos debajo de esta nota, puedes generar el reporte de acuerdo a tus necesidades.</p>
+<div class="row">
+    <form method="post" asp-action="Reportes" asp-controller="Ecommerce">
+        <table border="0">
+            <tr>
+                <th>Reporte de</th>
+                <th>Fecha inicio</th>
+                <th>Fecha Fin</th>
+                <th>Usuario</th>
+                <th>Canal de Venta</th>
+                <th>Operaciones</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <select asp-for="TipoReporte" class="form-control">
+                            <option value="1">Recargas</option>
+                            <option value="2">Pago de servicios</option>
+                            <option value="3">Compras</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input asp-for="Fechainicio" class="form-control" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input asp-for="FechaFin" class="form-control" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <select asp-for="usuario" class="form-control">
+                            <option value="1">Recargas</option>
+                            <option value="2">Pago de servicios</option>
+                            <option value="3">Compras</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <select asp-for="CanalVenta" class="form-control">
+                            <option value="1">Ventas</option>
+                            <option value="2">Compras</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Generar</button>
+                    </div>
+                </td>
+            </tr>
+            <tr><td colspan="6"><hr /></td></tr>
+        </table>
+    </form>
+</div>
+<div class="row">
+    @if (ViewBag.datos==true)
+    {
+        <div class="row">
+            <div class="col-md-3"><button class="btn btn-info">Exportar a PDF</button></div>
+            <div class="col-md-3"><button class="btn btn-info">Exportar a Excel</button></div>            
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ticket</th>
+                        <th>Producto</th>
+                        <th>Monto</th>
+                        <th>Referencia</th>
+                        <th>Autorización</th>
+                        <th>Cargo</th>
+                        <th>Abono</th>
+                        <th>Cajero</th>
+                        <th>Canal</th>
+                        <th>Estatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in ViewBag.lista)
+                    {
+                    <tr>
+                        <td>@item.Ticket</td>
+                        <td>@item.Producto</td>
+                        <td>@item.Monto</td>
+                        <td>@item.Referencia</td>
+                        <td>@item.Autorización</td>
+                        <td>@item.Cargo</td>
+                        <td>@item.Abono</td>
+                        <td>@item.Cajero</td>
+                        <td>@item.Canal</td>
+                        <td>@item.Estatus</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <p class="text-justify text-info">No hay datos para mostrar.</p> 
+        </div>
+    }
+</div>

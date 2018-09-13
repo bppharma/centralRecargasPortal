@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEcomm.cshtml";
+}
+@if (ViewBag.error)
+{
+
+}
+else
+{
+    <script type="text/javascript">
+        function formSubmit() {
+            document.getElementById("frmWait").submit();
+        }
+
+        window.onload = function () {
+            window.setTimeout(formSubmit, 2000);
+        };
+    </script>
+    <form method="post" asp-action="WaitResponse" asp-controller="Ecommerce" id="frmWait">
+        <input type="hidden" name="transId" id="transId" value="@ViewBag.transID" />
+        <h2>@ViewBag.mensaje</h2>
+        <div style="width:30%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/izPkTe0RgPyfe" width="30%" height="30%" style="position:absolute" frameBorder="0" allowFullScreen></iframe></div>
+    </form>
+}

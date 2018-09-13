@@ -1,0 +1,179 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEcomm.cshtml";
+}
+@{
+    ViewData["Title"] = "Pago de servicios";
+}
+<h2>@ViewData["Title"]</h2>
+<h4 class="text-center">Recuerda ofrecer los paquetes y promociones que dan las compañías de telefonía celular para generar mas ventas.</h4>
+<ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#recargas">Pago de Servicios</a></li>
+    <li><a data-toggle="tab" href="#paquetes">GiftCards/Pines electrónicos</a></li>
+</ul>
+<script type="text/javascript">
+    function doRecarga(Carrier) {
+        var input = document.createElement('input');
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "carrier");
+        input.setAttribute("value", Carrier);
+        document.getElementById("NewRecarga").appendChild(input);
+        document.getElementById("NewRecarga").submit();
+    }
+</script>
+<form asp-action="DoServicePay" asp-controller="Ecommerce" method="post" id="NewRecarga">
+    <input type="hidden" value="y" name="Viene" id="Viene" />
+    <div class="tab-content">
+        <div id="recargas" class="tab-pane fade in active">
+            <h5 id="nota1">Seleccione el servicio que quiere hacer el pago.</h5>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(17);">
+                                <img src="~/images/Portal/cfe_nice.png" class="img-thumbnail" />
+                            </a>
+                            CFE
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(18);">
+                                <img src="~/images/Portal/telmex-nice.png" class="img-thumbnail" />
+                            </a>
+                            TELMEX
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(19);">
+                                <img src="~/images/Portal/sky-nice.png" class="img-thumbnail" />
+                            </a>
+                            SKY/VeTV
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(20);">
+                                <img src="~/images/Portal/dish-nice.png" class="img-thumbnail" />
+                            </a>
+                            DISH
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(21);">
+                                <img src="~/images/Portal/totalplay-nice.png" class="img-thumbnail" />
+                            </a>
+                            Totalplay
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(22);">
+                                <img src="~/images/Portal/izzi-nice.png" class="img-thumbnail" />
+                            </a>
+                            IZZI
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(23);">
+                                <img src="~/images/Portal/gas-natural-nice.png" class="img-thumbnail" />
+                            </a>
+                            Gas Natural
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(24);">
+                                <img src="~/images/Portal/fuller-nice.png" class="img-thumbnail" />
+                            </a>
+                            Fuller
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(25);">
+                                <img src="~/images/Portal/megacable-nice.png" class="img-thumbnail" />
+                            </a>
+                            Megacable
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(26);">
+                                <img src="~/images/Portal/cablemas-nice.png" class="img-thumbnail" />
+                            </a>
+                            CableMas
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(11);">
+                                <img src="~/images/Portal/logo_weex.png" class="img-thumbnail" />
+                            </a>
+                            WEEX
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(12);">
+                                <img src="~/images/Portal/logo_flashmobile.png" class="img-thumbnail" />
+                            </a>
+                            Flash Mobile
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(13);">
+                                <img src="~/images/Portal/logo_tuenti.png" class="img-thumbnail" />
+                            </a>
+                            Tuenti
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+
+            </div>
+        </div>
+        <div id="paquetes" class="tab-pane fade">
+            <h5>Selecciona el Carrier del paquete a vender.</h5>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(14);">
+                                <img src="~/images/Portal/internet-telcelNice.png" class="img-thumbnail" />
+                            </a>
+                            Paquete internet Telcel
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(15);">
+                                <img src="~/images/Portal/amigo-sin-limiteNice.png" class="img-thumbnail" />
+                            </a>
+                            Paquete Amigo Sin Límite
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="doRecarga(16);">
+                                <img src="~/images/Portal/movistar-datos.png" class="img-thumbnail" />
+                            </a>
+                            Movistar Datos
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+
+            </div>
+        </div>
+    </div>
+</form>

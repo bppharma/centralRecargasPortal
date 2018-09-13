@@ -1,0 +1,163 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEcomm.cshtml";
+}
+@{
+    ViewData["Title"] = "Recargas Electrónicas";
+}
+@model RecargasViewModel.Recargar
+<h2>@ViewData["Title"]</h2>
+<script>
+    $(function () {
+
+        $('#spinner').hide();
+
+        $('button[id*=btnconfirm]').click(function (e) {
+            debugger;
+            e.preventDefault();
+            $('#spinner').show();
+            $("#hacerRecarga").submit();
+        });
+
+        $("#confirmDialog").dialog({
+            autoOpen: false,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "Realizar recarga": function () {
+                    $("#hacerRecarga").submit();
+                    $('#spinner').show();
+                },
+                "Cancelar": function (e) {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+
+    $(document).ready(function () {
+
+        $('#hacerRecarga').validate({ // initialize the plugin
+            rules: {
+                Numero: {
+                    required: true,
+                    minlength: 10
+                },
+                Confirmacion: {
+                    required: true,
+                    minlength: 10
+                }
+            }
+        });
+
+    });
+
+</script>
+<div id="spinner" style="position: fixed;left: 0px;top: 0px;width: 100%;height: 100%;z-index: 9999;background: url('../../wwwroot/images/ajax-loader.gif');">  </div>
+<div class=" row">
+    <div class="col-md-6">
+        <div class=" panel">
+            <div class="panel-heading"><span class="fas fa-mobile-alt"></span>&nbsp;<label id="headPanel">@ViewBag.headPanel</label></div>
+            <div class="panel-body">
+                <form asp-action="DoRecarga" asp-controller="Ecommerce" method="post" id="hacerRecarga">
+                    @if(ViewBag.error)
+                    {
+                        <label asp-for="@Model.ErrorMess" class="text-danger"></label>
+                    }
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class=" form-group" id="logoCarrier">
+                        @switch (ViewBag.CarrierImg)
+                        {
+                            case 1:
+                                <img src="~/images/Portal/logo_telcel.png" class="img-thumbnail" />
+                                break;
+                            case 2:
+                                <img src="~/images/Portal/logo_movistar.png" class="img-thumbnail" />
+                                break;
+                            case 3:
+                                <img src="~/images/Portal/logo_att.png" class="img-thumbnail" />
+                                break;
+                            case 4:
+                                <img src="~/images/Portal/logo_iusacell.png" class="img-thumbnail" />
+                                break;
+                            case 5:
+                                <img src="~/images/Portal/logo_virgin.png" class="img-thumbnail" />
+                                break;
+                            case 6:
+                                <img src="~/images/Portal/logo_unefon.png" class="img-thumbnail" />
+                                break;
+                            case 7:
+                                <img src="~/images/Portal/logo_nextel.png" class="img-thumbnail" />
+                                break;
+                            case 8:
+                                <img src="~/images/Portal/logo_alo.png" class="img-thumbnail" />
+                                break;
+                            case 9:
+                                <img src="~/images/Portal/logo_cierto.png" class="img-thumbnail" />
+                                break;
+                            case 10:
+                                <img src="~/images/Portal/logo_maztiempo.png" class="img-thumbnail" />
+                                break;
+                            case 11:
+                                <img src="~/images/Portal/logo_weex.png" class="img-thumbnail" />
+                                break;
+                            case 12:
+                                <img src="~/images/Portal/logo_flashmobile.png" class="img-thumbnail" />
+                                break;
+                            case 13:
+                                <img src="~/images/Portal/logo_tuenti.png" class="img-thumbnail" />
+                                break;
+                            case 14:
+                                <img src="~/images/Portal/internet-telcelNice.png" class="img-thumbnail" />
+                                break;
+                            case 15:
+                                <img src="~/images/Portal/amigo-sin-limiteNice.png" class="img-thumbnail" />
+                                break;
+                            case 16:
+                                <img src="~/images/Portal/movistar-datos.png" class="img-thumbnail" />
+                                break;
+                        }
+                    </div>
+                    <input type="hidden" asp-for="Carrier" value="@ViewBag.CarrierQ" />
+                    <div class="form-group-lg">
+                        <label asp-for="Monto"></label>
+                        <select asp-for="Monto" class="form-control" style="font-size:x-large;">
+                            @foreach (var item in ViewBag.listaMonto)
+                            {
+                                <option value="@item.codigo">@item.etiqueta</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Monto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-lg">
+                        <label asp-for="Numero"></label>
+                        <input asp-for="Numero" class="form-control" style="font-size:xx-large;" maxlength="10" />
+                        <span asp-validation-for="Numero" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-lg">
+                        <label asp-for="Confirmacion"></label>
+                        <input asp-for="Confirmacion" class="form-control" style="font-size:xx-large;" maxlength="10" />
+                        <span asp-validation-for="Confirmacion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button id="btnconfirm" class="btn btn-success">Enviar recarga</button>
+                    </div>
+                    <div class="form-group">
+                        <p class="text-center">Al hacer click en Enviar recarga, recuerde que no hay devoluciones ni cancelaciones.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button class="btn btn-block" asp-action="Recargas" asp-controller="Ecommerce"><span class="fas fa-undo-alt">&nbsp;&nbsp;Cancelar</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="confirmDialog" title="¿Los datos son correctos?" style="background-color:black; border-color:black; font-size:x-large; color:white;" hidden>
+    <p class="text-warning">Está seguro de enviar la recarga. recuerde que no hay devoluciones ni cancelaciones. </p>
+</div>
+

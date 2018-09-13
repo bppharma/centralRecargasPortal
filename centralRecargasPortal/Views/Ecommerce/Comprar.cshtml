@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEcomm.cshtml";
+}
+@{
+    ViewData["Title"] = "Registra compra";
+}
+@model centralRecargaAPIModel.comprarView
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="RegistraCompra" asp-controller="Ecommerce" method="post">
+            
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group-lg">
+                <label asp-for="banco"></label>
+                <select asp-for="banco" class="form-control">
+                    @foreach (KeyValuePair<string, string> banco in ViewBag.Bancos)
+                    {
+                        <option value="@banco.Key">@banco.Value</option>
+                    }
+                </select>
+                <span asp-validation-for="banco" class="text-danger"></span>
+            </div>
+            <div class="form-group-lg">
+                <label asp-for="formapago"></label>
+                <select asp-for="formapago" class="form-control">
+                    @foreach (KeyValuePair<string, string> banco in ViewBag.FormaPago)
+                    {
+                        <option value="@banco.Key">@banco.Value</option>
+                    }
+                </select>
+                <span asp-validation-for="formapago" class="text-danger"></span>
+            </div>
+            <div class="form-group-lg">
+                <label asp-for="monto"></label>
+                <input asp-for="monto" class="form-control" />
+                <span asp-validation-for="monto" class="text-danger"></span>
+            </div>
+            <div class="form-group-lg">
+                <label asp-for="fecha"></label>
+                <input asp-for="fecha" class="form-control" />
+                <span asp-validation-for="fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group-lg">
+                <label asp-for="hora"></label>
+                <input asp-for="hora" class="form-control" />
+                <span asp-validation-for="hora" class="text-danger"></span>
+            </div>
+            <div class="form-group-lg">
+                <label asp-for="folio"></label>
+                <input asp-for="folio" class="form-control" />
+                <span asp-validation-for="folio" class="text-danger"></span>
+            </div>
+            <div class="form-group-lg">
+                <button type="submit" class="btn btn-success">Registrar compra</button>
+            </div>
+            <div class="form-group-lg">
+                <p class="text-justify">Al registrar la compra aceptas los términos y condiciones así como el aviso de privacidad de Central Recargas.</p>
+                <p class="text-justify">Recuerda que tu saldo aparecerá entre 1 y 30 minutos después del registro.</p>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading text-center text-warning"><h4>1. Compra saldo</h4></div>
+            <div class="panel-body">
+                <p class="text-justify">
+                    Deposita o transfiere a cualquiera de nuestras cuentas bancarias para comprar saldo.
+                    Recuerda que con nosotros lo que compres se usará para pago de servicios y recargas electrónicas, sin compra mínima y con tu
+                    comisión incluida al momento de vender recargas.
+                </p>
+                <h5 class="text-center">Cuentas bancarias.</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-thumbnail" src="~/images/Portal/SCOTIA.png" />
+                    </div>
+                    <div class="col-md-8">
+                        <b>Scotiabank</b><br />Cuenta:0123456789<br />CLABE:0123456789012345678
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-thumbnail" src="~/images/Portal/BANORTE.png" />
+                    </div>
+                    <div class="col-md-8">
+                        <b>Banorte</b><br />Cuenta:0123456789<br />CLABE:0123456789012345678
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-thumbnail" src="~/images/Portal/bancosabadell.png" />
+                    </div>
+                    <div class="col-md-8">
+                        <b>Banco Sabadell</b><br />Cuenta:0123456789<br />CLABE:0123456789012345678
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-thumbnail" src="~/images/Portal/kuspit.png" />
+                    </div>
+                    <div class="col-md-8">
+                        <b>Kuspit</b><br />Cuenta:0123456789<br />CLABE:0123456789012345678
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-thumbnail" src="~/images/Portal/banregio.png" />
+                    </div>
+                    <div class="col-md-8">
+                        <b>Banregio</b><br />Cuenta:0123456789<br />CLABE:0123456789012345678
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-center"><a asp-controller="Ecommerce" asp-action="Cuentas" class="btn btn-info">Más informaci&oacute;n</a></div>
+        </div>
+    </div>
+</div>
